@@ -11,7 +11,6 @@ function App() {
   const [toCurrency, setToCurrency] = useState()
   const [exchangeRate, setExchangeRate] = useState()
   const [amount, setAmount] = useState(1)
-  const [toAmount, setToAmount] = useState(1)
   const [displayCurrency, setDisplayCurrency] = useState()
 
   useEffect(() => {
@@ -40,8 +39,8 @@ function App() {
 
   function displayConversion(e){
     e.preventDefault()
-    setToAmount(amount * exchangeRate)
-    setDisplayCurrency(`${toAmount} ${toCurrency} is equivalent to ${amount} ${fromCurrency}`)
+    let currToAmount = amount * exchangeRate
+    setDisplayCurrency(`${currToAmount} ${toCurrency} is equivalent to ${amount} ${fromCurrency}`)
   }
   return (
     <div className='App'>

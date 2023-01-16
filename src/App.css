@@ -7,11 +7,6 @@ body {
     text-align: center;
 }
 
-h1 {
-    margin:0;
-    margin-bottom: .5rem;
-}
-
 .input {
     border: 1px solid #333;
     border-radius: .3rem;
@@ -24,7 +19,7 @@ select {
 }
 
 #country_selector option {
-    width: 50rem;
+    width: 50%;
 }
 
 label {
