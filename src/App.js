@@ -42,7 +42,7 @@ function App() {
   function displayConversion(e){
     e.preventDefault()
     let currToAmount = amount * exchangeRate
-    setDisplayCurrency(`${amount} ${fromCurrency}is equivalent to ${currToAmount} ${toCurrency}`)
+    setDisplayCurrency(`${amount} ${fromCurrency} is equivalent to ${currToAmount} ${toCurrency}`)
   }
 
   function switchCurrs(){
