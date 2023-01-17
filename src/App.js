@@ -2,6 +2,8 @@ import CurrencyRow from './components/CurrencyRow'
 import CountDown from './components/CountDown';
 import './App.css'
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRepeat } from '@fortawesome/free-solid-svg-icons'
 
 const BASE_URL = 'https://api.exchangerate-api.com/v4/latest/GBP'
 
@@ -40,8 +42,16 @@ function App() {
   function displayConversion(e){
     e.preventDefault()
     let currToAmount = amount * exchangeRate
-    setDisplayCurrency(`${currToAmount} ${toCurrency} is equivalent to ${amount} ${fromCurrency}`)
+    setDisplayCurrency(`${amount} ${fromCurrency}is equivalent to ${currToAmount} ${toCurrency}`)
   }
+
+  function switchCurrs(){
+    let fc = fromCurrency
+    let tc = toCurrency
+    setFromCurrency(tc);
+    setToCurrency(fc)
+  }
+
   return (
     <div className='App'>
       <label>Amount<br/><input 
@@ -50,6 +60,7 @@ function App() {
             value={amount} 
             onChange={handleFromAmountChange}
         /></label>
+      <FontAwesomeIcon icon={faRepeat} onClick={switchCurrs}/>
       <CurrencyRow 
         currencyOptions={currencyOptions} 
         selectedCurrency={fromCurrency} 
@@ -62,7 +73,7 @@ function App() {
         onChangeCurrency={e => setToCurrency(e.target.value)} 
       />
       {displayCurrency ? <><p>{displayCurrency}</p> <CountDown seconds={10} setDisplayCurrency={setDisplayCurrency}/></> : <br/>}
-      <button onClick={displayConversion}>Convert</button>
+      <button disabled={displayCurrency} onClick={displayConversion}>Convert</button>
     </div>
   );
 }
