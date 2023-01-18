@@ -16,7 +16,10 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Coming soon
+This runs the test suite, so far only some basic logic is being tested in terms of converting
+a few inputs to a displayable a string containing the two numbers multiplied together.
+Sadly Cypress testing was an ambition but a few speed bumps led to time running out.  I will add it in 
+when I get some time.
 
 ### `npm run build`
 

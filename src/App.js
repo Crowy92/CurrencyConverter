@@ -4,6 +4,7 @@ import './App.css'
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRepeat } from '@fortawesome/free-solid-svg-icons'
+import { displayConversion } from './logic/logic';
 
 const BASE_URL = 'https://api.exchangerate-api.com/v4/latest/GBP'
 
@@ -39,10 +40,10 @@ function App() {
     setAmount(e.target.value)
   }
 
-  function displayConversion(e){
+  function handleDisplayConversion(e){
     e.preventDefault()
-    let currToAmount = amount * exchangeRate
-    setDisplayCurrency(`${amount} ${fromCurrency} is equivalent to ${currToAmount} ${toCurrency}`)
+    // let currToAmount = amount * exchangeRate
+    setDisplayCurrency(displayConversion(amount, exchangeRate, fromCurrency, toCurrency))
   }
 
   function switchCurrs(){
@@ -73,7 +74,7 @@ function App() {
         onChangeCurrency={e => setToCurrency(e.target.value)} 
       />
       {displayCurrency ? <><p>{displayCurrency}</p> <CountDown seconds={10} setDisplayCurrency={setDisplayCurrency}/></> : <br/>}
-      <button disabled={displayCurrency} onClick={displayConversion}>Convert</button>
+      <button disabled={displayCurrency} onClick={handleDisplayConversion}>Convert</button>
     </div>
   );
 }
