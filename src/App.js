@@ -4,9 +4,7 @@ import './App.css'
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRepeat } from '@fortawesome/free-solid-svg-icons'
-import { displayConversion } from './logic/logic';
-
-const BASE_URL = 'https://api.exchangerate-api.com/v4/latest/GBP'
+import { displayConversion, getRates, updateRates } from './logic/logic';
 
 function App() {
   const [currencyOptions, setCurrencyOptions] = useState([])
@@ -17,22 +15,27 @@ function App() {
   const [displayCurrency, setDisplayCurrency] = useState()
 
   useEffect(() => {
-    fetch(BASE_URL)
-      .then(res => res.json())
-      .then(data => {
-        const firstCurrency = Object.keys(data.rates)[1]
-        setCurrencyOptions([...Object.keys(data.rates)])
-        setFromCurrency(data.base)
-        setToCurrency(firstCurrency)
-        setExchangeRate(data.rates[firstCurrency])
-      })
+    const fetchData = async () => {
+        const rates = await getRates()
+        console.log(rates);
+        setToCurrency(rates.toCurrency)
+        setCurrencyOptions(rates.currencyOptions)
+        setFromCurrency(rates.fromCurrency)
+        setExchangeRate(rates.exchangeRate)
+    }
+    fetchData()
+      .catch(console.error)
   }, [])
 
   useEffect(() => {
     if(fromCurrency != null && toCurrency != null) {
-      fetch(`${BASE_URL}?base=${fromCurrency}&symbols=${toCurrency}`)
-        .then(res => res.json())
-        .then(data => setExchangeRate(data.rates[toCurrency]))
+      const updateData = async () => {
+        const updatedRates = await updateRates(fromCurrency, toCurrency)
+        console.log(updatedRates)
+        setExchangeRate(updatedRates)
+      }
+      updateData()
+        .catch(console.error)
     }
   }, [fromCurrency, toCurrency])
 
@@ -42,7 +45,6 @@ function App() {
 
   function handleDisplayConversion(e){
     e.preventDefault()
-    // let currToAmount = amount * exchangeRate
     setDisplayCurrency(displayConversion(amount, exchangeRate, fromCurrency, toCurrency))
   }
 
