@@ -35,4 +35,4 @@ function updateRates(fromCurrency, toCurrency) {
         .then(data => data.rates[toCurrency])
 }
 
-module.exports = {displayConversion, getRates, updateRates}
+export {displayConversion, getRates, updateRates}
