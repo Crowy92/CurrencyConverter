@@ -8,20 +8,67 @@ body {
 }
 
 .input {
-    border: 1px solid #333;
+    /* border: 1px solid #333;
     border-radius: .3rem;
     padding: .25rem;
-    width: 7em;
+    width: 7em; */
+    color: rgb(55,74,150);
+    border-style: none;
+}
+
+.repeat-icon {
+    color:rgb(55, 74, 150)
 }
 
 select {
     margin-left: .5rem;
+    margin-top: 20px;
 }
 
 #country_selector option {
     width: 50%;
 }
 
+.selectpicker {
+    color: rgb(55,74,150);
+    font-weight: 400;
+    border-style: none;
+    border-top: 40px;
+}
+
 label {
     color: lightgray;
+    left:10%;
+}
+
+.btn-convert {
+    border-radius: 30px;
+    background-color: rgb(56, 95, 252);
+    color: white;
+    border-style: none;
+    width: 99%;
+}
+
+.countdown {
+    background-color: rgb(55, 74, 150);
+    border-color: rgb(68, 108, 219);
+    border-width: thick;
+    border-style: solid;
+    color: white;
+    width: 50%;
+    margin:auto;
+    margin-bottom: 20px;
+}
+
+.conversion-txt {
+    margin-top: 20px;
+    color: rgb(55,74,150);
+    font-weight: 500;
+}
+
+.amount-switch {
+    width: 99%;
+    border-width: 0 0 5px 0;
+    border-color: rgb(55, 74, 150);
+    border-style: solid;
 }

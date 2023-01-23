@@ -18,6 +18,6 @@ export default function CountDown({seconds, setDisplayCurrency}) {
         }
     })
   return (
-    <h2>Expires in: {countdown} seconds</h2>
+    <p className='countdown'>Expires in: {countdown} seconds</p>
   )
 }

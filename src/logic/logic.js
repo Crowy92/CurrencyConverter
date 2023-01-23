@@ -4,7 +4,12 @@ function displayConversion(amount, exchangeRate, fromCurrency, toCurrency){
     let currToAmount = amount * exchangeRate
     if (isNaN(currToAmount))
         return null
-    return `${amount} ${fromCurrency} is equivalent to ${currToAmount} ${toCurrency}`
+    else if (currToAmount < 0.01)
+        return `${amount} ${fromCurrency} is equivalent to less than 0.01 ${toCurrency}`
+    else {
+        currToAmount = Math.round(currToAmount * 100) / 100
+        return `${amount} ${fromCurrency} is equivalent to ${currToAmount} ${toCurrency}`
+    }
 }
 
 function getRates() {

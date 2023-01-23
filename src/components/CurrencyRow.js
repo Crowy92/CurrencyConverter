@@ -22,6 +22,8 @@ export default function CurrencyRow(props) {
 
   return (
     <div>
+      {selectedCurrency && <img src={`https://flagcdn.com/60x45/${selectedCurrency.slice(0,2).toLowerCase()}.png`} width="16"
+height="12" alt={selectedCurrency.slice(0,2).toLowerCase()}></img>}
         <select 
             value={selectedCurrency} 
             onChange={onChangeCurrency}
@@ -36,7 +38,6 @@ export default function CurrencyRow(props) {
               </option>)})
             }
         </select>
-        {selectedCurrency && <img src={`https://flagcdn.com/16x12/${selectedCurrency.slice(0,2).toLowerCase()}.png`} alt={selectedCurrency.slice(0,2).toLowerCase()}></img>}
     </div>
   )
 }

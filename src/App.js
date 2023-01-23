@@ -57,13 +57,17 @@ function App() {
 
   return (
     <div className='App'>
-      <label>Amount<br/><input 
-            type="number" 
-            className='input' 
-            value={amount} 
-            onChange={handleFromAmountChange}
-        /></label>
-      <FontAwesomeIcon icon={faRepeat} onClick={switchCurrs}/>
+      <div className='amount-switch'>
+        <label for='amount-input'>Amount</label>
+        <br/><input 
+              type="number" 
+              className='input'
+              id='amount-input' 
+              value={amount} 
+              onChange={handleFromAmountChange}
+              />
+        <FontAwesomeIcon className='repeat-icon' icon={faRepeat} onClick={switchCurrs}/>
+      </div>
       <CurrencyRow 
         currencyOptions={currencyOptions} 
         selectedCurrency={fromCurrency} 
@@ -75,8 +79,8 @@ function App() {
         selectedCurrency={toCurrency} 
         onChangeCurrency={e => setToCurrency(e.target.value)} 
       />
-      {displayCurrency ? <><p>{displayCurrency}</p> <CountDown seconds={10} setDisplayCurrency={setDisplayCurrency}/></> : <br/>}
-      <button disabled={displayCurrency} onClick={handleDisplayConversion}>Convert</button>
+      {displayCurrency ? <><p className='conversion-txt'>{displayCurrency}</p> <CountDown seconds={10} setDisplayCurrency={setDisplayCurrency}/></> : <br/>}
+      <button className="btn-convert" disabled={displayCurrency} onClick={handleDisplayConversion}>Convert</button>
     </div>
   );
 }
